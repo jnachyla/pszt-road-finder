@@ -1,1 +1,1 @@
-# pszt-road-finder
+# PSZT-Projekt
