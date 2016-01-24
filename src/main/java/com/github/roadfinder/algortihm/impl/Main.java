@@ -42,34 +42,33 @@ public class Main {
 		return inter;
 	}
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		int[] el = RandPermutation(1,30);
 		for(int i = 0; i < el.length; ++i)
 			System.out.print(el[i] + " ");
 		System.out.println("");
 		Interval inter = RandInterval(0, 30);
 		System.out.println("S: " + inter.start + " E: " + inter.end);
-		
+
 		Individual parent1 = new Individual(10);
 		parent1.Randomize();
-		
+
 		System.out.println("Rodzice:");
 		System.out.println(parent1);
 		Individual parent2 = new Individual(10);
 		parent2.Randomize();
 		System.out.println(parent2);
-		
+
 		Individual[] childs = Crossovers.ordered(parent1, parent2);
 		System.out.println("Dzieci:");
 		System.out.println(childs[0]);
 		System.out.println(childs[1]);
-		
+
 		Individual mut1 = Mutations.RSM(parent1), mut2 = Mutations.RSM(parent1);
 		System.out.println("Mutacje:");
 		System.out.println(mut1);
 		System.out.println(mut2);
-		
-		
+
+
 		City[] cities = new City[7];
 		cities[0] = new City(0,0, 1);
 		cities[1] = new City(3,0, 3);
@@ -80,12 +79,12 @@ public class Main {
 		cities[5] = new City(3,1, 2);
 		cities[6] = new City(1,3, 2);
 		/*FindRoadAlg alg = new FindRoadAlg(20,cities.length);
-		
+
 		alg.setCities(cities);
 		alg.AddForbidPlace(0, 1);
-		
+
 		//Testy kolizji
-			
+
 		alg.AddForbidPlace(2, 4);
 		alg.AddForbidPlace(3, 5);
 		System.out.println("Collsion test: ");
@@ -100,11 +99,11 @@ public class Main {
 		for(int i = 0; i < 3000; ++i)
 			alg.oneStep();
 		System.out.println("Wykonano kroki fit: " + alg.population[0].fitValue);*/
-		
-		System.out.println("Testy klasy PathSearcherGenetic :");
-		
+
+/*		System.out.println("Testy klasy PathSearcherGenetic :");
+
 		PathSearcherGenetic pathSer = new PathSearcherGenetic();
-		PathSearcherGenetic.CitiesData[] citiesD = new PathSearcherGenetic.CitiesData[7];
+		CitiesData[] citiesD = new PathSearcherGenetic.CitiesData[7];
 		citiesD[0] = new PathSearcherGenetic.CitiesData(0,0, 1);
 		citiesD[1] = new PathSearcherGenetic.CitiesData(3,0, 3);
 		citiesD[2] = new PathSearcherGenetic.CitiesData(3,3, 1);
@@ -120,8 +119,12 @@ public class Main {
 		System.out.println("Poczatek obliczen");
 		while(!pathSer.hasFinished());
 		System.out.println("Koniec obliczen");
-		System.out.println("Wynik: " + pathSer.getActMaxFit());
-		
+		System.out.println("Wynik: " + pathSer.getActMaxFit());*/
+
 	}
 
+	private static class CitiesData
+	{
+
+	}
 }

@@ -1,20 +1,43 @@
 package com.github.roadfinder.algortihm.api;
 
 
+import com.github.roadfinder.algortihm.impl.City;
+import com.github.roadfinder.model.utils.PointInterface;
+
 public interface PathSearcher  {
 
-	public static class CitiesData {
+	public static class CityData
+	{
 		public int X,Y;
 		public int mass_of_pack;
-		public CitiesData(int X, int Y, int mass)
+
+		public CityData( int X, int Y, int mass )
 		{
 			this.X = X;
 			this.Y = Y;
 			this.mass_of_pack = mass;
 		}
 	};
-	public static class ForbidPlace {
-		public short X,Y;
+
+	public static class ForbidPlace implements PointInterface
+	{
+
+		public int X, Y;
+
+		public int getX()
+		{
+			return X;
+		}
+
+		public int getY()
+		{
+			return Y;
+		}
+
+		public int getSize()
+		{
+			return 30;
+		}
 	}
 
 	public void resetMap();
@@ -45,9 +68,11 @@ public interface PathSearcher  {
 
 	public int getPopulationSize();
 
-	public void setCitiesToMap(CitiesData[] data, int start_city);
-	
-	public void setForbidPlaces(ForbidPlace[] data);
-	
+	public void setCitiesToMap( CityData[] data, int start_city );
+
+	public void setCitiesToMap( City[] data, int start_city );
+
+	public void setForbidPlaces( PointInterface[] data );
+
 	// TODO Podczas dzia³aania algorytmu zmiany w³asciwoœæi sygnalizowaæ b³êdem
 }

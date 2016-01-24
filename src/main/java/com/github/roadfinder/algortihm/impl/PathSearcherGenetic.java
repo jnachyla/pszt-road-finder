@@ -1,17 +1,19 @@
 package com.github.roadfinder.algortihm.impl;
 
+import com.github.roadfinder.algortihm.api.PathSearcher;
+import com.github.roadfinder.model.utils.PointInterface;
+
 import java.util.Vector;
-import com.github.roadfinder.algortihm.api.*;
 
 public class PathSearcherGenetic implements PathSearcher {
 
-	
-	private City toCity(PathSearcher.CitiesData data) {
+	//WTF???
+	private City toCity( CityData data )
+	{
 		City city = new City(data.X, data.Y, data.mass_of_pack);
 		return city;
 	}
-	
-	
+
 	public PathSearcherGenetic() {
 		
 	}
@@ -54,7 +56,7 @@ public class PathSearcherGenetic implements PathSearcher {
 		{
 			for(int i = 0; i < forbidData.length; ++i)
 			{
-				finder.AddForbidPlace(forbidData[i].X, forbidData[i].Y);
+				finder.AddForbidPlace( forbidData[ i ].getX(), forbidData[ i ].getY() );
 			}
 		}
 		
@@ -125,15 +127,39 @@ public class PathSearcherGenetic implements PathSearcher {
 		return populationSize;
 	}
 
-	public void setCitiesToMap(CitiesData[] data, int start_city) { 
+	public void setCitiesToMap( CityData[] data, int start_city )
+	{
 		citiesData = data.clone();
 		if(start_city != 0)
 		{
-			CitiesData temp = citiesData[start_city];
+			CityData temp = citiesData[ start_city ];
 			citiesData[start_city] = citiesData[0];
 			citiesData[0] = temp;
 		}
 	}
+
+	public void setCitiesToMap( City[] data, int start_city )
+	{
+		//TODO pozbyc sie klasy CitiesData
+		citiesData = new CityData[ data.length ];
+
+		for ( int i = 0; i < data.length; i++ ) {
+			CityData cityData = new CityData( data[ i ].x, data[ i ].y, data[ i ].mass );
+			citiesData[ i ] = cityData;
+		}
+
+		if ( start_city >= 0 ) {
+			CityData temp = citiesData[ start_city ];
+			citiesData[ start_city ] = citiesData[ 0 ];
+			citiesData[ 0 ] = temp;
+		}
+	}
+
+	public void setForbidPlaces( PointInterface[] data )
+	{
+		forbidData = data.clone();
+	}
+
 	public void setForbidPlaces(ForbidPlace[] data)
 	{
 		forbidData = data.clone();
@@ -157,8 +183,8 @@ public class PathSearcherGenetic implements PathSearcher {
 	}
 	private Vector<Float> minPlotData  = new Vector<Float>();
 	private Vector<Float> meanPlotData= new Vector<Float>();
-	private CitiesData[] citiesData = null;
-	private ForbidPlace[] forbidData = null;
+	private CityData[] citiesData = null;
+	private PointInterface[] forbidData = null;
 	private int maxGeneration  = 100;
 	private int actGeneration = 0;
 	private int populationSize = 20;

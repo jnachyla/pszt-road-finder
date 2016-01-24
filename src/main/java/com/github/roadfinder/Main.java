@@ -1,12 +1,14 @@
 package com.github.roadfinder;
 
-import com.github.roadfinder.controler.Controller;
+import com.github.roadfinder.model.impl.ModelImpl;
 import com.github.roadfinder.view.View;
 
-public class Main {
+public class Main
+{
 
-    public static void main(String[] args) {
-        View.launch(View.class,args);
-        new Controller();
+    public static void main( String[] args )
+    {
+        ModelImpl.getInstance();
+        View.launch( View.class, args );
     }
 }

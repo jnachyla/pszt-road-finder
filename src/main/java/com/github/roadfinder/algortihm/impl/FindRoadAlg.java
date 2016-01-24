@@ -165,7 +165,7 @@ public class FindRoadAlg {
 			//co
 			for(int i =order.length-1 ; i >= 0; --i)
 			{
-				ret += C2*cities[order[i]].M*disTable[i];
+				ret += C2 * cities[ order[ i ] ].mass * disTable[ i ];
 			}
 			
 			ind.fitValue = ret;
@@ -225,6 +225,8 @@ public class FindRoadAlg {
 		
 		//Get the best fit
 		best_fit = population[0].fitValue;
+
+		System.out.println( "Actaul result road: " + Arrays.toString( population[ 0 ].getGenotype() ) );
 		
 		System.out.println("Shortest: " + population[0].D);
 		System.out.println("Step finished");

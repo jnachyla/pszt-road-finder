@@ -1,0 +1,17 @@
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<GridPane fx:controller="com.github.roadfinder.controler.InputDataControllerImpl"
+          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
+
+    <Label fx:id="label1" text="Liczba miast" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+    <TextField fx:id="citiesNumTextField" text="5" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+
+    <Label fx:id="label2" text="Liczba pkt. obszarów zabronionych" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+    <TextField fx:id="forbiddenPointsNum" text="0" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+
+    <Label fx:id="label3" text="Rozmiar terenu: A (AxA)" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+    <TextField fx:id="terrainSize" text="5" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+
+    <Button text="Generuj dane" onAction="#onGenerateData" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+
+</GridPane>

@@ -3,7 +3,6 @@ package com.github.roadfinder.view;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
@@ -11,17 +10,29 @@ import javafx.stage.Stage;
  */
 public class View extends Application {
 
+    public static final String APP_NAME = "Road-Finder";
+    public static final int WIDTH = 1200;
+    public static final int HEIGHT = 800;
+    private Stage primaryStage;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        showHelloWorld(primaryStage);
+        this.primaryStage = primaryStage;
+        show( primaryStage );
     }
 
-    private void showHelloWorld(Stage primaryStage) throws java.io.IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/sample.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+    private void show( Stage primaryStage ) throws java.io.IOException
+    {
+
+        primaryStage.setTitle( APP_NAME );
+
+        Parent root = FXMLLoader.load( getClass().getResource( "/view/inputDataPanel.fxml" ) );
+        primaryStage.setScene( new DeafultScene( root ) );
         primaryStage.show();
     }
 
+    public Stage getPrimaryStage()
+    {
+        return primaryStage;
+    }
 }
