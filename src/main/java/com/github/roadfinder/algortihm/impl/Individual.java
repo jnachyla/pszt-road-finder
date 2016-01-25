@@ -7,7 +7,7 @@ public class Individual implements Comparable<Individual>{
 	private int[] genotype;
 	double fitValue=0;
 	public double D = 0;
-
+	int collisionsCount = 0;
 	public class Interval {
 		public int start = 0, end = 0;
 		Interval() { };

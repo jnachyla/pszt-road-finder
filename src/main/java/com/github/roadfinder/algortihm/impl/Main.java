@@ -78,10 +78,10 @@ public class Main {
 		cities[4] = new City(1,0, 3);
 		cities[5] = new City(3,1, 2);
 		cities[6] = new City(1,3, 2);
-		/*FindRoadAlg alg = new FindRoadAlg(20,cities.length);
+		FindRoadAlg alg = new FindRoadAlg(10,cities.length);
 
 		alg.setCities(cities);
-		alg.AddForbidPlace(0, 1);
+		//alg.AddForbidPlace(0, 1);
 
 		//Testy kolizji
 
@@ -98,7 +98,7 @@ public class Main {
 		System.out.println("Expect 1: " + alg.CheckCollision(4, 1 , 3, 7));
 		for(int i = 0; i < 3000; ++i)
 			alg.oneStep();
-		System.out.println("Wykonano kroki fit: " + alg.population[0].fitValue);*/
+		System.out.println("Wykonano kroki fit: " + alg.population[0].fitValue);
 
 /*		System.out.println("Testy klasy PathSearcherGenetic :");
 
