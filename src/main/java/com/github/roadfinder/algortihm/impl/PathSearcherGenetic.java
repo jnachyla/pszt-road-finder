@@ -127,8 +127,10 @@ public class PathSearcherGenetic implements PathSearcher {
 	public int getPopulationSize() {
 		return populationSize;
 	}
-	public boolean wasAbleToFindPath() {
-		return (finder.population[0].collisionsCount == 0);
+
+	public boolean wasAbleToFindPath()
+	{
+		return ( finder.population[ 0 ].collisionsCount == 0 );
 	}
 	public void setCitiesToMap( CityData[] data, int start_city )
 	{

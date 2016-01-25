@@ -21,9 +21,8 @@ public class FindRoadAlg {
 		place.x = x;
 		place.y = y;
 		forbidPlaces.add(place);
-		for(int i = 0; i < population.length; ++i)
-		{
-			population[i].fitValue = 0;
+		for ( int i = 0; i < population.length; ++i ) {
+			population[ i ].fitValue = 0;
 		}
 	}
 	public boolean CheckCollision(int sX, int sY, int eX, int eY)
@@ -47,15 +46,15 @@ public class FindRoadAlg {
 			
 			if(vertical == true)
 			{
-				if( maxY >= place.y  && minY  <= place.y+1 )
+				if ( maxY >= place.y && minY <= place.y + 1 )
 				{
-					if(eX == place.x || eX == place.x+1)
+					if ( eX == place.x || eX == place.x + 1 )
 						return true;
 				}
 			}
 			else
 			{
-				if(maxX >= place.x   && minX <= place.x+1 ) // czy odcinek sie miesci 
+				if ( maxX >= place.x && minX <= place.x + 1 ) // czy odcinek sie miesci
 				{
 					double poX = (((place.x+0.5)+a*(place.y+0.5))-a*b)/(a*a+1);
 					double poY = (a*((place.x+0.5)+a*(place.y+0.5))+b)/(a*a+1);
@@ -107,7 +106,7 @@ public class FindRoadAlg {
 				this.cities = cities;
 				for(int i = 0; i < population.length; ++i)
 				{
-					population[i].fitValue = 0;
+					population[ i ].fitValue = 0;
 					fitFunc(population[i]);
 				}
 				Arrays.sort(population);
@@ -147,7 +146,7 @@ public class FindRoadAlg {
 			double[] disTable = new double[order.length]; // table of path length to the city from start position
 			
 			double actDis = 0; // distance between actual cities
-			
+
 			int collisionsCount = 0;
 			for(int i = 0 ; i < order.length; i++)
 			{
@@ -157,9 +156,9 @@ public class FindRoadAlg {
 				nY = cities[order[i]].y;
 				
 				actDis =  Math.sqrt((nX-oX)*(nX-oX)+(nY-oY)*(nY-oY)); //compute actual distance
-				if(CheckCollision(nX, nY, oX, oY)) {
+				if ( CheckCollision( nX, nY, oX, oY ) ) {
 					actDis = 100000000000.0;
-					collisionsCount+=1;
+					collisionsCount += 1;
 				}
 				d += actDis; // add to path length 
 				disTable[i] = d; // save actual path length to table
@@ -235,7 +234,7 @@ public class FindRoadAlg {
 		best_fit = population[0].fitValue;
 
 		//System.out.println( "Actaul result road: " + Arrays.toString( population[ 0 ].getGenotype() ) );
-		
+
 		//System.out.println("Shortest: " + population[0].fitValue);
 		//System.out.println("Step finished");
 	}
