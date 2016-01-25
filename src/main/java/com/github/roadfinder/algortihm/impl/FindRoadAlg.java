@@ -21,6 +21,10 @@ public class FindRoadAlg {
 		place.x = x;
 		place.y = y;
 		forbidPlaces.add(place);
+		for(int i = 0; i < population.length; ++i)
+		{
+			population[i].fitValue = 0;
+		}
 	}
 	public boolean CheckCollision(int sX, int sY, int eX, int eY)
 	{
@@ -43,15 +47,15 @@ public class FindRoadAlg {
 			
 			if(vertical == true)
 			{
-				if(place.y >= minY && place.y+1 <= maxY)
+				if( maxY >= place.y  && minY  <= place.y+1 )
 				{
-					if(eX == place.x)
+					if(eX == place.x || eX == place.x+1)
 						return true;
 				}
 			}
 			else
 			{
-				if(place.x >= minX  && place.x+1 <= maxX) // czy odcinek sie miesci 
+				if(maxX >= place.x   && minX <= place.x+1 ) // czy odcinek sie miesci 
 				{
 					double poX = (((place.x+0.5)+a*(place.y+0.5))-a*b)/(a*a+1);
 					double poY = (a*((place.x+0.5)+a*(place.y+0.5))+b)/(a*a+1);
@@ -61,7 +65,9 @@ public class FindRoadAlg {
 					
 					if(place.x <= poX  && place.x+1 >= poX &&
 							place.y <= poY && place.y+1 >= poY) // czy punkt sie miesci
+					{
 						return true;
+					}
 					/*if( dist <= 0.5 )
 						return true;
 					if( dist < 0.8 ) // if dist < sqrt(2)
@@ -101,6 +107,7 @@ public class FindRoadAlg {
 				this.cities = cities;
 				for(int i = 0; i < population.length; ++i)
 				{
+					population[i].fitValue = 0;
 					fitFunc(population[i]);
 				}
 				Arrays.sort(population);
@@ -141,7 +148,7 @@ public class FindRoadAlg {
 			
 			double actDis = 0; // distance between actual cities
 			
-			
+			int collisionsCount = 0;
 			for(int i = 0 ; i < order.length; i++)
 			{
 				
@@ -150,8 +157,10 @@ public class FindRoadAlg {
 				nY = cities[order[i]].y;
 				
 				actDis =  Math.sqrt((nX-oX)*(nX-oX)+(nY-oY)*(nY-oY)); //compute actual distance
-				if(CheckCollision(nX, nY, oX, oY))
-					actDis = Double.POSITIVE_INFINITY;
+				if(CheckCollision(nX, nY, oX, oY)) {
+					actDis = 100000000000.0;
+					collisionsCount+=1;
+				}
 				d += actDis; // add to path length 
 				disTable[i] = d; // save actual path length to table
 				
@@ -162,7 +171,6 @@ public class FindRoadAlg {
 			
 			ret += C1*d;
 			
-			//co
 			for(int i =order.length-1 ; i >= 0; --i)
 			{
 				ret += C2 * cities[ order[ i ] ].mass * disTable[ i ];
@@ -170,13 +178,13 @@ public class FindRoadAlg {
 			
 			ind.fitValue = ret;
 			ind.D = d;
+			ind.collisionsCount = collisionsCount;
 		}
-		//TODO: Dodac kare za przechodzenie po terenie zakazanym
 		return ind.fitValue;
 	}
 	public void oneStep() {
-		System.out.println("======================================");
-		System.out.println("Step started");
+//		System.out.println("======================================");
+//		System.out.println("Step started");
 		//Selection the best fitted individuals
 		int halfPop = population.length/2; 
 		for(int i = halfPop; i < population.length; ++i)
@@ -226,9 +234,9 @@ public class FindRoadAlg {
 		//Get the best fit
 		best_fit = population[0].fitValue;
 
-		System.out.println( "Actaul result road: " + Arrays.toString( population[ 0 ].getGenotype() ) );
+		//System.out.println( "Actaul result road: " + Arrays.toString( population[ 0 ].getGenotype() ) );
 		
-		System.out.println("Shortest: " + population[0].D);
-		System.out.println("Step finished");
+		//System.out.println("Shortest: " + population[0].fitValue);
+		//System.out.println("Step finished");
 	}
 }

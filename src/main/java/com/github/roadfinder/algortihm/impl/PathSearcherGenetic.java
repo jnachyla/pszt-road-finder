@@ -79,6 +79,7 @@ public class PathSearcherGenetic implements PathSearcher {
 	}
 
 	public boolean hasFinished() {
+		System.out.println( "Actaul result road: " + getActMaxFit() );
 		if(algThread == null)
 			return false;
 		else
@@ -126,7 +127,9 @@ public class PathSearcherGenetic implements PathSearcher {
 	public int getPopulationSize() {
 		return populationSize;
 	}
-
+	public boolean wasAbleToFindPath() {
+		return (finder.population[0].collisionsCount == 0);
+	}
 	public void setCitiesToMap( CityData[] data, int start_city )
 	{
 		citiesData = data.clone();
