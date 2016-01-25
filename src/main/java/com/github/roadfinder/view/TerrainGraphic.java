@@ -148,6 +148,7 @@ public class TerrainGraphic extends Group
             int p2Y = getCordinate( p2.getY() );
 
             gc().strokeLine( p1X, p1Y, p2x, p2Y );
+
             gc().setStroke( Color.BLUE );
         }
 
@@ -160,7 +161,7 @@ public class TerrainGraphic extends Group
 
             gc().fillOval( x - pointSize / 2, y - pointSize / 2, pointSize, pointSize );
 
-            gc().fillText( "Start", x + point.getSize() / 2, y + ( point.getSize() + 20 ) / 2 );
+            gc().fillText( "Start", x + point.getSize() / 2, y + ( point.getSize() + 40 ) / 2 );
         }
     }
 }

@@ -12,4 +12,9 @@ public class ResultGraphicControllerImpl
     {
 
     }
+
+    public void onDisplayChart( ActionEvent actionEvent )
+    {
+
+    }
 }

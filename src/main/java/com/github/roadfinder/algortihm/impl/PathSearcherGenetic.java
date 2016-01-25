@@ -86,11 +86,11 @@ public class PathSearcherGenetic implements PathSearcher {
 	}
 
 	public Float[] getMinFitPlot() {
-		return (Float[])minPlotData.toArray();
+		return minPlotData.toArray( new Float[ minPlotData.size() ] );
 	}
 
 	public Float[] getMeanFitPlot() {
-		return (Float[])meanPlotData.toArray();
+		return meanPlotData.toArray( new Float[ meanPlotData.size() ] );
 	}
 
 	public int[] getActBestPath() {

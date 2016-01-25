@@ -3,5 +3,5 @@
 <GridPane id="resultsGraphic" fx:controller="com.github.roadfinder.controler.ResultGraphicControllerImpl"
           xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
 
-    <Button text="Zamknij" onAction="#onClose" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+    <Button text="Wyświetl wykres" onAction="#onDisplayChart" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
 </GridPane>
